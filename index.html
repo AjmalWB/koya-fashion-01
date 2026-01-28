@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOYA Fashion </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="product.css">
+
+   <link rel="stylesheet" href="card-stack.css">
+   <link rel="stylesheet" href="showcase.css">
+
+
+
+</head>
+<body>
+    
+    <!-- <nav class="navbar-custom" id="navbar">
+        <div class="container">
+            <div class="navbar-wrapper">
+                <div class="d-flex justify-content-between align-items-center">
+             -->
+
+
+                <!-- From Uiverse.io by SelfMadeSystem --> 
+                <!-- <div class="navbar">
+                    <div class="logo-loader">
+                        <span class="logo-text">KOYA</span>
+                    </div>
+                </div>
+
+                <div class="nav-links d-none d-lg-flex">
+                    <a href="#" class="nav-link-custom" onclick="showPage('home')">Home</a>
+                    <a href="#" class="nav-link-custom" onclick="showPage('men')">Men</a>
+                    <a href="#" class="nav-link-custom" onclick="showPage('women')">Women</a>
+                    <a href="#" class="nav-link-custom" onclick="showPage('kids')">Kids</a>
+                    <a href="#" class="nav-link-custom" onclick="showPage('accessories')">Accessories</a>
+                    <a href="#" class="nav-link-custom" onclick="showPage('brands')">Brands</a>
+                </div>
+                
+                <div class="nav-icons">
+                    <div class="nav-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('favorites')" >
+                        <i class="fas fa-heart" ></i>
+                        <span class="badge-custom" id="favCount">0</span>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('cart')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge-custom" id="cartCount">0</span>
+                    </div>
+                    <div class="nav-icon">
+                        <i class="fas fa-user"></i>
+                    </div> -->
+
+                     <!-- Mobile Menu Button -->
+                    <!-- <div class="nav-icon menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+             <div class="mobile-menu">
+            <a href="javascript:void(0)" onclick="showPage('home')">Home</a>
+            <a href="javascript:void(0)" onclick="showPage('men')">Men</a>
+            <a href="javascript:void(0)" onclick="showPage('women')">Women</a>
+            <a href="javascript:void(0)" onclick="showPage('kids')">Kids</a>
+            <a href="javascript:void(0)" onclick="showPage('accessories')">Accessories</a>
+            <a href="javascript:void(0)" onclick="showPage('brands')">Brands</a>
+            </div>
+
+            </div>
+            </div>
+        
+    </nav> -->
+
+
+    <!-- Header -->
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none;"><h1>KOYA</h1></a>
+                </div>
+                <nav class="main-nav">
+                    <div class="nav-links d-none d-lg-flex">
+                        <a href="#" class="nav-link-custom active" onclick="showPage('home')">Home</a>
+                        <a href="#" class="nav-link-custom" onclick="showPage('men')">Men</a>
+                        <a href="#" class="nav-link-custom" onclick="showPage('women')">Women</a>
+                        <a href="#" class="nav-link-custom" onclick="showPage('kids')">Kids</a>
+                        <a href="#" class="nav-link-custom" onclick="showPage('accessories')">Accessories</a>
+                    </div>
+                </nav>
+
+                <div class="nav-icons">
+                    <div class="nav-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('favorites')">
+                        <i class="fas fa-heart"></i>
+                        <span class="badge-custom" id="favCount">0</span>
+                    </div>
+                    <div class="nav-icon" onclick="showPage('cart')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge-custom" id="cartCount">0</span>
+                    </div>
+                    <div class="nav-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <div class="nav-icon menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div class="mobile-menu">
+                    <a href="#" onclick="showPage('home'); closeMenu()">Home</a>
+                    <a href="#" onclick="showPage('men'); closeMenu()">Men</a>
+                    <a href="#" onclick="showPage('women'); closeMenu()">Women</a>
+                    <a href="#" onclick="showPage('kids'); closeMenu()">Kids</a>
+                    <a href="#" onclick="showPage('accessories'); closeMenu()">Accessories</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="homePage" class="page active">
+
+
+       <section class="hero-banner">
+            <div class="banner-3d">
+                <div class="banner-content">
+                    <h1>Elevate Your Style</h1>
+                    <p>Discover Premium Fashion Collections</p>
+                    <button class="btn-premium"
+                        onclick="document.getElementById('products').scrollIntoView({ behavior: 'smooth' })">
+                        Explore
+                    </button>
+                </div>
+
+                <div class="model-3d">
+                    <div class="model-3d-item" id="banner3d" style="align-items: center;object-position: center;object-fit: cover;"></div>
+                </div>
+            </div>
+        </section>
+
+
+         <!-- products cards scrolling ===================================--> 
+
+        <section class="horizontal-product-section">
+            <h2 class="section-title">LATEST RELEASES</h2>
+
+            <!-- Scroll Buttons -->
+            <button class="scroll-btn scroll-btn-left" id="scrollLeft" aria-label="Scroll Left">❮</button>
+
+            <div class="product-scroll-container" id="productScroll">
+                
+                <!-- Card 1 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/kid01.1.png); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/k1.png" alt="Product 1">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 1</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$43.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/LONG_SLEEV.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/m9.png" alt="Product 2">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$59.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/wmn01.1.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/w1.png" alt="Product 3">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$37.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/men01.1.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/m3.png" alt="Product 4">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$48.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/kidwd01.1.png); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/m10.png" alt="Product 5">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$34.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 6 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/kidpnt01.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/k4.png" alt="Product 6">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$46.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 7 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/wmnpnt01.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/w2.png" alt="Product 7">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$38.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 8 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/prin01.1.png); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/m6.png" alt="Product 8">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$41.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 9 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/kidwd01.1.png); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/k2.png" alt="Product 9">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$45.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 10 -->
+                <a href="brand-categorie.html" class="hp-card-link">
+                    <div class="hp-card">
+                        <div class="hp-card-inner" style="background-image: url(images/tshirt01.webp); background-position: center; background-size: cover;">
+                            <div class="hp-card__liquid"></div>
+                            <div class="hp-card__shine"></div>
+                            <div class="hp-card__glow"></div>
+                            <div class="hp-card__content">
+                                <div class="hp-card__badge">TRENDING</div>
+                                <div class="hp-card__image">
+                                    <img src="images/k7.png" alt="Product 10">
+                                </div>
+                                <div class="hp-card__text">
+                                    <p class="hp-card__title">Dynamic Design 2</p>
+                                    <p class="hp-card__description">Experience interactive hover effects</p>
+                                </div>
+                                <div class="hp-card__footer">
+                                    <div class="hp-card__price">$51.99</div>
+                                    <div class="hp-card__button">
+                                        <svg viewBox="0 0 24 24" width="16" height="16">
+                                            <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <button class="scroll-btn scroll-btn-right" id="scrollRight" aria-label="Scroll Right">❯</button>
+        </section>
+
+           
+
+
+
+            <!-- orbit wapper section========================================  -->
+
+        <section class="fashion-trending-section">
+            <div class="fashion-trending-container">
+                <!-- Left Column - Content -->
+                <div class="fashion-content-box">
+                    <h2 class="fashion-main-title">Trending Fashion</h2>
+                    <p class="fashion-main-description">
+                        Discover the latest trends in fashion that are making waves this season. 
+                        From elegant dresses to stylish accessories, explore our curated collection 
+                        of must-have pieces that blend contemporary design with timeless elegance. 
+                        Click on any product to view detailed information and make it yours today.
+                    </p>
+                    <div class="fashion-stats-grid">
+                        <div class="fashion-stat-box">
+                            <span class="fashion-stat-num">500+</span>
+                            <span class="fashion-stat-text">New Arrivals</span>
+                        </div>
+                        <div class="fashion-stat-box">
+                            <span class="fashion-stat-num">50%</span>
+                            <span class="fashion-stat-text">Off Sale Items</span>
+                        </div>
+                        <div class="fashion-stat-box">
+                            <span class="fashion-stat-num">1000+</span>
+                            <span class="fashion-stat-text">Happy Customers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Orbit Carousel -->
+                <div class="orbit-wrapper">
+                    <div class="orbit">
+                        <div class="boz" style="--i:-2" data-fashion-item="0">
+                            <img src="images/w1.png" alt="Summer Floral Dress">
+                            <div class="fashion-card-overlay">
+                                <h3 class="fashion-card-name">Summer Floral Dress</h3>
+                                <p class="fashion-card-price">$89.99</p>
+                            </div>
+                        </div>
+                        <div class="boz" style="--i:-1" data-fashion-item="1">
+                            <img src="images/m1.png" alt="Classic Denim Jacket">
+                            <div class="fashion-card-overlay">
+                                <h3 class="fashion-card-name">Classic Denim Jacket</h3>
+                                <p class="fashion-card-price">$129.99</p>
+                            </div>
+                        </div>
+                        <div class="boz active" style="--i:0" data-fashion-item="2">
+                            <img src="images/k5.png" alt="Elegant Evening Gown">
+                            <div class="fashion-card-overlay">
+                                <h3 class="fashion-card-name">Elegant Evening Gown</h3>
+                                <p class="fashion-card-price">$199.99</p>
+                            </div>
+                        </div>
+                        <div class="boz" style="--i:1" data-fashion-item="3">
+                            <img src="images/m9.png" alt="Casual Chic Outfit">
+                            <div class="fashion-card-overlay">
+                                <h3 class="fashion-card-name">Casual Chic Outfit</h3>
+                                <p class="fashion-card-price">$79.99</p>
+                            </div>
+                        </div>
+                        <div class="boz" style="--i:2" data-fashion-item="4">
+                            <img src="images/tshirt01.webp" alt="Designer Handbag">
+                            <div class="fashion-card-overlay">
+                                <h3 class="fashion-card-name">Designer Handbag</h3>
+                                <p class="fashion-card-price">$249.99</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fashion Item Detail Modal -->
+        <div class="fashion-detail-modal" id="fashionDetailModal">
+            <div class="fashion-modal-backdrop"></div>
+            <div class="fashion-modal-wrapper">
+                <button class="fashion-modal-close-btn" id="closeFashionModal">&times;</button>
+                <div class="fashion-modal-inner">
+                    <div class="fashion-modal-img-section">
+                        <img id="fashionItemImage" src="" alt="">
+                    </div>
+                    <div class="fashion-modal-info-section">
+                        <h2 id="fashionItemTitle"></h2>
+                        <p class="fashion-item-cost" id="fashionItemCost"></p>
+                        <div class="fashion-item-rating">
+                            <span class="fashion-rating-stars">★★★★★</span>
+                            <span class="fashion-rating-info">(4.8/5.0 - 128 reviews)</span>
+                        </div>
+                        <p class="fashion-item-text" id="fashionItemText"></p>
+                        
+                        <div class="fashion-selection-options">
+                            <div class="fashion-option-block">
+                                <label>Size:</label>
+                                <div class="fashion-size-choices">
+                                    <button class="fashion-size-choice">XS</button>
+                                    <button class="fashion-size-choice fashion-selected">S</button>
+                                    <button class="fashion-size-choice">M</button>
+                                    <button class="fashion-size-choice">L</button>
+                                    <button class="fashion-size-choice">XL</button>
+                                </div>
+                            </div>
+                            
+                            <div class="fashion-option-block">
+                                <label>Quantity:</label>
+                                <div class="fashion-qty-controls">
+                                    <button class="fashion-qty-button" id="fashionDecreaseQty">-</button>
+                                    <input type="number" id="fashionQuantity" value="1" min="1" max="10">
+                                    <button class="fashion-qty-button" id="fashionIncreaseQty">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fashion-action-buttons">
+                            <button class="fashion-btn-add-bag">Add to Cart</button>
+                            <button class="fashion-btn-purchase">Buy Now</button>
+                        </div>
+
+                        <div class="fashion-item-highlights">
+                            <h3>Features:</h3>
+                            <ul id="fashionItemHighlights"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Character Showcase Section =================================-->
+        <section class="character-showcase-section">
+            <div class="container">
+                <h2 class="section-title">Featured Models</h2>
+                
+                <div class="showcase-container" id="showcaseContainer">
+                    <!-- Main Character Image -->
+                    <div class="main-character-image" id="mainCharacterImage"></div>
+
+                    <!-- Quote Overlay -->
+                    <div class="quote-overlay" id="quoteText"></div>
+
+                    <!-- Decorative GIFs -->
+                    <div class="gif-container gif-1" id="gif1"></div>
+                    <div class="gif-container gif-2" id="gif2"></div>
+                    <div class="gif-container gif-3" id="gif3"></div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="nav-buttons-container">
+                        <div class="nav-buttons" id="navButtons"></div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div class="info-box" id="infoBox">
+                        <div class="info-title" id="infoTitle"></div>
+                        <div class="info-subtitle" id="infoSubtitle"></div>
+                        <div class="info-text" id="infoText"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detail Modal -->
+        <div class="detail-modal" id="detailModal">
+            <div class="modal-content-box">
+                <button class="modal-close-btn" onclick="closeDetailModal()">×</button>
+                <div class="modal-header-image" id="modalHeaderImage">
+                    <div class="modal-title-overlay">
+                        <div class="modal-title" id="modalTitle"></div>
+                    </div>
+                </div>
+                <div class="modal-gallery" id="modalGallery"></div>
+                <div class="modal-description" id="modalDescription"></div>
+            </div>
+        </div>
+
+          <!-- Featured Products====================================== -->
+
+
+       <section class="card-stack-section">
+            <div class="container">
+                <h2 class="section-title">Featured Products</h2>
+                
+                <div class="card-stack-wrapper">
+                    <div class="card-stack-container">
+                        <div class="card-stack opened" id="cardStack">
+                            <!-- Cards will be dynamically generated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="card-controls">
+                        <button class="control-btn" id="prevBtn" title="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="control-btn active" id="autoBtn" title="Auto Play">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="control-btn" id="nextBtn" title="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <div class="progress-dots" id="progressDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals===================================== -->
+
+             <!-- New Arrivals -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <h2 class="section-title">New Arrivals</h2>
+                
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                    <button class="filter-btn" onclick="filterProducts('men')">Men</button>
+                    <button class="filter-btn" onclick="filterProducts('women')">Women</button>
+                    <button class="filter-btn" onclick="filterProducts('kids')">Kids</button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+                </div>
+                
+                <div class="product-grid" id="productGrid"></div>
+            </div>
+        </section>
+
+        <!-- Brands Section -->
+        <section class="brands-section">
+            <div class="container">
+                <h2 class="section-title">Premium Brands</h2>
+                <div class="brands-grid" id="brandsGrid"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Men's Page -->
+    <div id="menPage" class="page">
+        <section class="products-section" style="padding-top: 50px; min-height: 100vh;">
+            <div class="container">
+                <h2 class="section-title">Men's Collection</h2>
+                <div class="product-grid" id="menProducts"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Women's Page -->
+    <div id="womenPage" class="page">
+        <section class="products-section" style="padding-top: 50px; min-height: 100vh;">
+            <div class="container">
+                <h2 class="section-title">Women's Collection</h2>
+                <div class="product-grid" id="womenProducts"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Kids' Page -->
+    <div id="kidsPage" class="page">
+        <section class="products-section" style="padding-top: 50px; min-height: 100vh;">
+            <div class="container">
+                <h2 class="section-title">Kids' Collection</h2>
+                <div class="product-grid" id="kidsProducts"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Accessories Page -->
+    <div id="accessoriesPage" class="page">
+        <section class="products-section" style="padding-top: 50px; min-height: 100vh;">
+            <div class="container">
+                <h2 class="section-title">Accessories</h2>
+                <div class="product-grid" id="accessoriesProducts"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Favorites Page -->
+    <div id="favoritesPage" class="page">
+        <section class="cart-section">
+            <div class="container">
+                <h2 class="section-title">My Favorites</h2>
+                <div class="product-grid" id="favoritesGrid"></div>
+                <div id="emptyFavorites" class="empty-message" style="display: none;">
+                    <i class="fas fa-heart-broken"></i>
+                    <p>No favorites yet</p>
+                    <button class="btn-premium" onclick="showPage('home')">Start Shopping</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Page -->
+    <div id="cartPage" class="page">
+        <section class="cart-section">
+            <div class="container">
+                <h2 class="section-title">Shopping Cart</h2>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div id="cartItems"></div>
+                        <div id="emptyCart" class="empty-message" style="display: none;">
+                            <i class="fas fa-shopping-cart"></i>
+                            <p>Your cart is empty</p>
+                            <button class="btn-premium" onclick="showPage('home')">Start Shopping</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cart-summary">
+                            <h3 class="mb-4">Order Summary</h3>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Subtotal:</span>
+                                <span id="subtotal">$0</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Shipping:</span>
+                                <span id="shipping">$20</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Tax:</span>
+                                <span id="tax">$0</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-4">
+                                <strong>Total:</strong>
+                                <strong id="total">$0</strong>
+                            </div>
+                            <button class="checkout-btn" onclick="showPage('checkout')">Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Checkout Page -->
+    <div id="checkoutPage" class="page">
+        <section class="cart-section">
+            <div class="container">
+                <h2 class="section-title">Checkout</h2>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cart-summary mb-4">
+                            <h3 class="mb-4">Shipping Information</h3>
+                            <form id="checkoutForm">
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">ZIP Code</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="cart-summary">
+                            <h3 class="mb-4">Payment Information</h3>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Card Number</label>
+                                    <input type="text" class="form-control" placeholder="1234 5678 9012 3456" required>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Expiry Date</label>
+                                        <input type="text" class="form-control" placeholder="MM/YY" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">CVV</label>
+                                        <input type="text" class="form-control" placeholder="123" required>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cart-summary">
+                            <h3 class="mb-4">Order Summary</h3>
+                            <div id="checkoutItems" class="mb-3"></div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Subtotal:</span>
+                                <span id="checkoutSubtotal">$0</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Shipping:</span>
+                                <span>$20</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Tax:</span>
+                                <span id="checkoutTax">$0</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-4">
+                                <strong>Total:</strong>
+                                <strong id="checkoutTotal">$0</strong>
+                            </div>
+                            <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-custom" id="productModal">
+        <div class="modal-content-custom">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-detail" id="productDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" style="text-decoration: none;"><h3> KOYA</h3></a>
+                    <p>Your premier destination for luxury fashion. We bring you the finest collections from around the world.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('men')">Men</a></li>
+                        <li><a href="#" onclick="showPage('women')">Women</a></li>
+                        <li><a href="#" onclick="showPage('kids')">Kids</a></li>
+                        <li><a href="#" onclick="showPage('accessories')">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers and updates.</p>
+                    <div class="search-bar mt-3">
+                        <input type="email" class="search-input" placeholder="Enter your email">
+                    </div>
+                    <button class="btn-premium mt-3" style="padding: 10px 30px;">Subscribe</button>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center py-3">
+                <p>&copy; 2026 KOYA Fashion. All rights reserved. Designed with ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="mainscript.js"></script>
+    <script src="product.js"></script>
+    <script src="brand-categorie.js"></script>
+    
+
+    <script src="card-stack.js"></script>
+    <script src="showcase.js"></script>
+</body>
+</html>

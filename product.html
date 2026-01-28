@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Fashion Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product.css">
+    <style>
+        
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #b8860b;
+            --accent: #daa520;
+            --light: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            overflow-x: hidden;
+        }
+
+        /* Product Grid - Fully Responsive */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .product-card:hover {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Product Image with actual images */
+        .product-image {
+            height: 350px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1200px) {
+            .product-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-image {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-image {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .product-image {
+                height: 250px;
+            }
+        }
+
+        /* Product Badge */
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .product-badge {
+                top: 10px;
+                right: 10px;
+                padding: 4px 12px;
+                font-size: 0.65rem;
+            }
+        }
+
+        /* Favorite Button */
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .favorite-btn i {
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.15);
+            background: #f5576c;
+        }
+
+        .favorite-btn:hover i {
+            color: white;
+        }
+
+        .favorite-btn.active {
+            background: #f5576c;
+        }
+
+        .favorite-btn.active i {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .favorite-btn {
+                top: 10px;
+                left: 10px;
+                width: 38px;
+                height: 38px;
+            }
+            
+            .favorite-btn i {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .favorite-btn {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .favorite-btn i {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Product Info */
+        .product-info {
+            padding: 20px;
+            background: white;
+        }
+
+        @media (max-width: 768px) {
+            .product-info {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-info {
+                padding: 12px;
+            }
+        }
+
+        .product-brand {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .product-brand {
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            min-height: 2.8em;
+        }
+
+        @media (max-width: 768px) {
+            .product-name {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-name {
+                font-size: 0.9rem;
+            }
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .product-price {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-price {
+                font-size: 1.1rem;
+            }
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .product-rating {
+                gap: 3px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .star {
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .star {
+                font-size: 0.75rem;
+            }
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .add-to-cart {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .add-to-cart {
+                padding: 8px;
+                font-size: 0.75rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        .products-section {
+            padding: 80px 0;
+        }
+
+        @media (max-width: 768px) {
+            .products-section {
+                padding: 50px 0;
+            }
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--secondary);
+            background: white;
+            color: var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                padding: 8px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Modal */
+        .modal-custom {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-custom.active {
+            display: flex;
+        }
+
+        .modal-content-custom {
+            background: white;
+            border-radius: 30px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content-custom {
+                border-radius: 20px;
+                max-height: 95vh;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            background: var(--secondary);
+        }
+
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 25px;
+            }
+        }
+
+        .detail-image {
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .detail-image {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-image {
+                height: 280px;
+            }
+        }
+
+        .detail-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .detail-info h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .detail-price {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .detail-price {
+                font-size: 1.5rem;
+            }
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #f5576c;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">New Arrivals</h2>
+            
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+                <button class="filter-btn" onclick="filterProducts('men')">Men</button>
+                <button class="filter-btn" onclick="filterProducts('women')">Women</button>
+                <button class="filter-btn" onclick="filterProducts('kids')">Kids</button>
+                <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+            </div>
+            
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-custom" id="productModal">
+        <div class="modal-content-custom">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-detail" id="productDetailContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Data Storage
+        let products = [];
+        let cart = [];
+        let favorites = [];
+        let currentFilter = 'all';
+
+        // Initialize Products with Real Images
+        function initializeProducts() {
+            products = [
+                // Men's Collection
+                { id: 1, name: "Classic Suit", brand: "ARMANI", price: 899, category: "men", image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400&h=500&fit=crop", rating: 5, badge: "NEW" },
+                { id: 2, name: "Leather Jacket", brand: "BOSS", price: 699, category: "men", image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop", rating: 5, badge: "HOT" },
+                { id: 3, name: "Casual Shirt", brand: "POLO", price: 129, category: "men", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&h=500&fit=crop", rating: 4 },
+                { id: 4, name: "Denim Jeans", brand: "LEVI'S", price: 159, category: "men", image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=500&fit=crop", rating: 5 },
+                { id: 5, name: "Sneakers", brand: "NIKE", price: 189, category: "men", image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=500&fit=crop", rating: 4, badge: "SALE" },
+                { id: 6, name: "Winter Coat", brand: "BURBERRY", price: 1299, category: "men", image: "https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=400&h=500&fit=crop", rating: 5, badge: "NEW" },
+                
+                // Women's Collection
+                { id: 7, name: "Evening Dress", brand: "CHANEL", price: 1599, category: "women", image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=400&h=500&fit=crop", rating: 5, badge: "NEW" },
+                { id: 8, name: "Handbag", brand: "GUCCI", price: 2499, category: "women", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=500&fit=crop", rating: 5, badge: "HOT" },
+                { id: 9, name: "High Heels", brand: "PRADA", price: 799, category: "women", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=500&fit=crop", rating: 5 },
+                { id: 10, name: "Blazer", brand: "VERSACE", price: 899, category: "women", image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?w=400&h=500&fit=crop", rating: 4 },
+                { id: 11, name: "Skirt", brand: "DIOR", price: 499, category: "women", image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400&h=500&fit=crop", rating: 4, badge: "SALE" },
+                { id: 12, name: "Blouse", brand: "VALENTINO", price: 399, category: "women", image: "https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=400&h=500&fit=crop", rating: 5 },
+                
+                // Kids Collection
+                { id: 13, name: "Kids Jacket", brand: "GAP KIDS", price: 89, category: "kids", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=500&fit=crop", rating: 4, badge: "NEW" },
+                { id: 14, name: "School Uniform", brand: "TOMMY", price: 79, category: "kids", image: "https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?w=400&h=500&fit=crop", rating: 4 },
+                { id: 15, name: "Sneakers", brand: "ADIDAS KIDS", price: 69, category: "kids", image: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=400&h=500&fit=crop", rating: 5 },
+                { id: 16, name: "Dress", brand: "H&M KIDS", price: 59, category: "kids", image: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400&h=500&fit=crop", rating: 4, badge: "SALE" },
+                { id: 17, name: "Jeans", brand: "ZARA KIDS", price: 49, category: "kids", image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=400&h=500&fit=crop", rating: 4 },
+                { id: 18, name: "Winter Coat", brand: "COLUMBIA", price: 129, category: "kids", image: "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=400&h=500&fit=crop", rating: 5 },
+                
+                // Accessories
+                { id: 19, name: "Sunglasses", brand: "RAY-BAN", price: 199, category: "accessories", image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=500&fit=crop", rating: 5, badge: "HOT" },
+                { id: 20, name: "Watch", brand: "ROLEX", price: 8999, category: "accessories", image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=500&fit=crop", rating: 5, badge: "NEW" },
+                { id: 21, name: "Belt", brand: "HERMÈS", price: 499, category: "accessories", image: "https://images.unsplash.com/photo-1624222247344-550fb60583bb?w=400&h=500&fit=crop", rating: 4 },
+                { id: 22, name: "Wallet", brand: "LV", price: 799, category: "accessories", image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=500&fit=crop", rating: 5 },
+                { id: 23, name: "Hat", brand: "BURBERRY", price: 299, category: "accessories", image: "https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=400&h=500&fit=crop", rating: 4 },
+                { id: 24, name: "Scarf", brand: "GUCCI", price: 399, category: "accessories", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400&h=500&fit=crop", rating: 5, badge: "SALE" }
+            ];
+        }
+
+        // Render Products
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            productsToRender.forEach(product => {
+                const isFavorite = favorites.some(fav => fav.id === product.id);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                        <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, event)">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">${product.brand}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-price">$${product.price}</div>
+                        <div class="product-rating">
+                            ${'<i class="fas fa-star star"></i>'.repeat(product.rating)}
+                        </div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                card.querySelector('.product-image').addEventListener('click', () => showProductDetail(product.id));
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Products
+        function filterProducts(category) {
+            currentFilter = category;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const filtered = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+            renderProducts(filtered);
+        }
+
+        // Toggle Favorite
+        function toggleFavorite(productId, event) {
+            event.stopPropagation();
+            const product = products.find(p => p.id === productId);
+            const index = favorites.findIndex(fav => fav.id === productId);
+            
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(product);
+            }
+            
+            renderProducts(currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter));
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            alert(`${product.name} added to cart!`);
+        }
+
+        // Show Product Detail
+        function showProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            const modal = document.getElementById('productModal');
+            const content = document.getElementById('productDetailContent');
+            
+            content.innerHTML = `
+                <div class="detail-image">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="detail-info">
+                    <div class="product-brand">${product.brand}</div>
+                    <h2>${product.name}</h2>
+                    <div class="detail-price">$${product.price}</div>
+                    <div class="product-rating mb-3">
+                        ${'<i class="fas fa-star star"></i>'.repeat(product.rating)}
+                    </div>
+                    <p class="mb-4">Premium quality ${product.name.toLowerCase()} from ${product.brand}. Perfect for any occasion.</p>
+                    <button class="add-to-cart" onclick="addToCart(${product.id})">
+                        Add to Cart - $${product.price}
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        // Initialize
+        initializeProducts();
+        renderProducts(products);
+    </script>
+</body>
+</html>

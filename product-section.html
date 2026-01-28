@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Horizontal Product Section */
+        .horizontal-product-section {
+            padding: 2em;
+            background: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            margin-bottom: 1em;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Scroll Container - Hidden Scrollbar */
+        .product-scroll-container {
+            display: flex;
+            gap: 1.5em;
+            overflow-x: auto;
+            padding-bottom: 1em;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Link Wrapper for Cards */
+        .hp-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        /* Card Styles - FIXED SIZE */
+        .hp-card {
+            flex: 0 0 300px;
+            perspective: 1000px;
+            width: 300px;
+        }
+
+        .hp-card-inner {
+            --card-bg: #ffffff;
+            --card-accent: #ff8a65;
+            --card-text: #263238;
+            --card-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            height: 440px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+        }
+
+        .hp-card-inner::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+            z-index: 1;
+        }
+
+        .hp-card-inner:hover {
+            transform: rotateY(10deg) rotateX(10deg) translateZ(10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Liquid, Shine, Glow */
+        .hp-card__liquid {
+            position: absolute;
+            top: -80px;
+            left: 0;
+            width: 300px;
+            height: 200px;
+            background: #4a90e2;
+            border-radius: 50%;
+            transform: translateZ(-80px);
+            filter: blur(80px);
+            transition: transform 0.7s cubic-bezier(0.36, 0, 0.66, -0.56),
+                        opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        .hp-card-inner:hover .hp-card__liquid {
+            transform: translateZ(-50px) translateY(30px) translateX(-20px) rotate(-20deg) scale(1.2);
+            opacity: 0.7;
+        }
+
+        .hp-card__shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0.1) 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            z-index: 2;
+        }
+
+        .hp-card-inner:hover .hp-card__shine {
+            opacity: 1;
+            animation: shine-effect 2s infinite linear;
+        }
+
+        .hp-card__glow {
+            position: absolute;
+            inset: -15px;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 138, 101, 0.4) 0%, rgba(255, 138, 101, 0) 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .hp-card-inner:hover .hp-card__glow {
+            opacity: 1;
+        }
+
+        /* Card Content */
+        .hp-card__content {
+            padding: 1.5em;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hp-card__badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f9a825;
+            color: white;
+            padding: 0.3em 0.6em;
+            border-radius: 999px;
+            font-size: 0.8em;
+            font-weight: 600;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.5s ease 0.2s;
+            z-index: 5;
+        }
+
+        .hp-card-inner:hover .hp-card__badge {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .hp-card__image {
+            width: 100%;
+            height: 300px;
+            background: var(--bg-color);
+            border-radius: 15px;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .hp-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hp-card-inner:hover .hp-card__image {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .hp-card__image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+                        repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 3px, transparent 3px, transparent 6px);
+            opacity: 0.6;
+        }
+
+        /* Text */
+        .hp-card__text {
+            flex-grow: 1;
+        }
+
+        .hp-card__title {
+            color: white;
+            font-size: 1.2em;
+            margin: 0 0 0.5em 0;
+            font-weight: 700;
+            transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .hp-card-inner:hover .hp-card__title {
+            color: var(--card-accent);
+            transform: translateX(3px);
+        }
+
+        .hp-card__description {
+            color: white;
+            font-size: 0.85em;
+            margin: 0;
+            opacity: 0.8;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .hp-card-inner:hover .hp-card__description {
+            opacity: 1;
+            transform: translateX(3px);
+        }
+
+        /* Footer */
+        .hp-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .hp-card__price {
+            color: white;
+            font-weight: 700;
+            font-size: 1.3em;
+            transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .hp-card-inner:hover .hp-card__price {
+            color: var(--card-accent);
+            transform: translateX(3px);
+        }
+
+        .hp-card__button {
+            width: 40px;
+            height: 40px;
+            background: var(--card-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            transform: scale(0.85);
+        }
+
+        .hp-card-inner:hover .hp-card__button {
+            transform: scale(1);
+            box-shadow: 0 0 0 5px rgba(255, 138, 101, 0.3);
+        }
+
+        .hp-card-inner:hover .hp-card__button svg {
+            animation: pulse-button 1.5s infinite;
+        }
+
+        /* Animations */
+        @keyframes shine-effect {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        @keyframes pulse-button {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* Premium Scroll Buttons */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 50;
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #222;
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+            transition: all 0.3s ease;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: #ff8a65;
+            color: #fff;
+        }
+
+        .scroll-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .scroll-btn-left {
+            left: 10px;
+        }
+
+        .scroll-btn-right {
+            right: 10px;
+        }
+
+        .scroll-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .horizontal-product-section {
+                padding: 1em;
+            }
+
+            .section-title {
+                font-size: 1.3em;
+            }
+
+            .hp-card {
+                flex: 0 0 240px;
+                width: 240px;
+            }
+
+            .hp-card-inner {
+                width: 240px;
+                height: 380px;
+            }
+
+            .hp-card__image {
+                height: 240px;
+            }
+
+            .product-scroll-container {
+                gap: 1em;
+            }
+
+            .scroll-btn {
+                width: 44px;
+                height: 44px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .horizontal-product-section {
+                padding: 0.5em;
+            }
+
+            .section-title {
+                font-size: 1.1em;
+                padding: 0 0.5em;
+            }
+
+            .hp-card {
+                flex: 0 0 200px;
+                width: 200px;
+            }
+
+            .hp-card-inner {
+                width: 200px;
+                height: 340px;
+            }
+
+            .hp-card__content {
+                padding: 1em;
+            }
+
+            .hp-card__image {
+                height: 200px;
+            }
+
+            .product-scroll-container {
+                gap: 0.8em;
+                padding-left: 0.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="horizontal-product-section">
+    <h2 class="section-title">LATEST RELEASES</h2>
+
+    <!-- Scroll Buttons -->
+    <button class="scroll-btn scroll-btn-left" id="scrollLeft" aria-label="Scroll Left">❮</button>
+
+    <div class="product-scroll-container" id="productScroll">
+        
+        <!-- Card 1 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/kid01.1.png); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/k1.png" alt="Product 1">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 1</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$143.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/LONG_SLEEV.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/m9.png" alt="Product 2">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/wmn01.1.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/w1.png" alt="Product 3">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/men01.1.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/m3.png" alt="Product 4">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/kidwd01.1.png); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/m10.png" alt="Product 5">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/kidpnt01.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/k4.png" alt="Product 6">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 7 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/wmnpnt01.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/w2.png" alt="Product 7">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 8 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/prin01.1.png); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/m6.png" alt="Product 8">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 9 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/kidwd01.1.png); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/k2.png" alt="Product 9">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 10 -->
+        <a href="brand-categorie.html" class="hp-card-link">
+            <div class="hp-card">
+                <div class="hp-card-inner" style="background-image: url(images/tshirt01.webp); background-position: center; background-size: cover;">
+                    <div class="hp-card__liquid"></div>
+                    <div class="hp-card__shine"></div>
+                    <div class="hp-card__glow"></div>
+                    <div class="hp-card__content">
+                        <div class="hp-card__badge">TRENDING</div>
+                        <div class="hp-card__image">
+                            <img src="images/k7.png" alt="Product 10">
+                        </div>
+                        <div class="hp-card__text">
+                            <p class="hp-card__title">Dynamic Design 2</p>
+                            <p class="hp-card__description">Experience interactive hover effects</p>
+                        </div>
+                        <div class="hp-card__footer">
+                            <div class="hp-card__price">$159.99</div>
+                            <div class="hp-card__button">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path fill="currentColor" d="M5 12H19M12 5V19" stroke="currentColor" stroke-width="2"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <button class="scroll-btn scroll-btn-right" id="scrollRight" aria-label="Scroll Right">❯</button>
+</section>
+
+<script>
+// Horizontal scroll functionality with working buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.getElementById('productScroll');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+    
+    if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) {
+        console.error('Scroll elements not found');
+        return;
+    }
+
+    // Scroll amount (adjust based on your card width + gap)
+    const scrollAmount = 320;
+
+    // Scroll left button
+    scrollLeftBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollContainer.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Scroll right button
+    scrollRightBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollContainer.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Update button states based on scroll position
+    function updateButtonStates() {
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const currentScroll = scrollContainer.scrollLeft;
+
+        // Disable left button at start
+        if (currentScroll <= 0) {
+            scrollLeftBtn.disabled = true;
+            scrollLeftBtn.style.opacity = '0.3';
+        } else {
+            scrollLeftBtn.disabled = false;
+            scrollLeftBtn.style.opacity = '1';
+        }
+
+        // Disable right button at end
+        if (currentScroll >= maxScroll - 1) {
+            scrollRightBtn.disabled = true;
+            scrollRightBtn.style.opacity = '0.3';
+        } else {
+            scrollRightBtn.disabled = false;
+            scrollRightBtn.style.opacity = '1';
+        }
+    }
+
+    // Initial button state check
+    updateButtonStates();
+
+    // Update button states on scroll
+    scrollContainer.addEventListener('scroll', updateButtonStates);
+
+    // Update button states on window resize
+    window.addEventListener('resize', updateButtonStates);
+});
+</script>
+
+</body>
+</html>

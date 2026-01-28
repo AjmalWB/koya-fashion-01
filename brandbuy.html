@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tommy Hilfiger - Product Details | KOYA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brandbuy.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html"><h1>KOYA</h1></a>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="brand-categorie.html" class="active">Men</a>
+                    <a href="#">Women</a>
+                    <a href="#">Kids</a>
+                    <a href="#">Accessories</a>
+                    <a href="#">Brands</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="icon-btn search-btn" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn wishlist-btn" aria-label="Wishlist">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <span class="badge">0</span>
+                    </button>
+                    <button class="icon-btn cart-btn" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="badge">0</span>
+                    </button>
+                    <button class="icon-btn user-btn" aria-label="Account">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <a href="brand-categorie.html">Men</a>
+            <span>/</span>
+            <span id="breadcrumbProduct">Product</span>
+        </div>
+    </div>
+
+    <!-- Product Details Section -->
+    <main class="product-details">
+        <div class="container">
+            <div class="product-layout">
+                <!-- Image Gallery -->
+                <div class="image-gallery">
+                    <div class="main-image">
+                        <img id="mainImage" src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1000&fit=crop" alt="Product">
+                        <button class="wishlist-btn-large" aria-label="Add to wishlist">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="thumbnail-gallery">
+                        <button class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=150&h=150&fit=crop" alt="Thumbnail 1">
+                        </button>
+                        <button class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=150&h=150&fit=crop" alt="Thumbnail 2">
+                        </button>
+                        <button class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1594938291221-94f18cbb5660?w=150&h=150&fit=crop" alt="Thumbnail 3">
+                        </button>
+                        <button class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=150&h=150&fit=crop" alt="Thumbnail 4">
+                        </button>
+                        <button class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=150&h=150&fit=crop" alt="Thumbnail 5">
+                        </button>
+                        <button class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1622445275463-afa2ab738c34?w=800&h=1000&fit=crop')">
+                            <img src="https://images.unsplash.com/photo-1622445275463-afa2ab738c34?w=150&h=150&fit=crop" alt="Thumbnail 6">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info-section">
+                    <div class="product-header">
+                        <h1 class="product-title">Tommy Hilfiger</h1>
+                        <p class="product-subtitle">Men's Solid Casual Shirt Pure Cotton Denim Light Wash</p>
+                    </div>
+
+                    <div class="product-rating-section">
+                        <div class="rating-display">
+                            <span class="rating-number">4.2</span>
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                        <span class="rating-count">2 Verified Buyers</span>
+                    </div>
+
+                    <div class="price-section">
+                        <div class="price-main">
+                            <span class="current-price">$1251</span>
+                            <span class="original-price">$2599</span>
+                        </div>
+                        <div class="discount-badge">-51% OFF</div>
+                    </div>
+
+                    <p class="tax-info">Inclusive of all taxes</p>
+
+                    <!-- Select Color -->
+                    <div class="product-option">
+                        <h3 class="option-title">SELECT COLOR <span class="required">*</span></h3>
+                        <div class="color-selector">
+                            <button class="color-choice active" data-color="Blue">
+                                <span class="color-swatch" style="background: #4169E1;"></span>
+                                <span class="color-name">Blue</span>
+                            </button>
+                            <button class="color-choice" data-color="Black">
+                                <span class="color-swatch" style="background: #000;"></span>
+                                <span class="color-name">Black</span>
+                            </button>
+                            <button class="color-choice" data-color="White">
+                                <span class="color-swatch" style="background: #fff; border: 1px solid #ddd;"></span>
+                                <span class="color-name">White</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Select Size -->
+                    <div class="product-option">
+                        <div class="option-header">
+                            <h3 class="option-title">SELECT SIZE <span class="required">*</span></h3>
+                            <a href="#" class="size-chart-link">SIZE CHART ›</a>
+                        </div>
+                        <div class="size-selector">
+                            <button class="size-choice" data-size="S">S</button>
+                            <button class="size-choice" data-size="M">M</button>
+                            <button class="size-choice" data-size="L">L</button>
+                            <button class="size-choice active" data-size="XL">XL</button>
+                            <button class="size-choice" data-size="XXL">XXL</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-buy">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            ADD TO BAG
+                        </button>
+                        <button class="btn btn-secondary btn-wishlist">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            WISHLIST
+                        </button>
+                    </div>
+
+                    <!-- Delivery Section -->
+                    <div class="delivery-section">
+                        <h3 class="section-title">DELIVERY OPTIONS</h3>
+                        <div class="delivery-input-group">
+                            <input type="text" placeholder="Enter Pin code" class="pincode-input">
+                            <button class="check-btn">CHECK</button>
+                        </div>
+                        <div class="delivery-info">
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                                <span>Standard Delivery: 3-5 business days</span>
+                            </div>
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span>Pay on delivery available</span>
+                            </div>
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                                <span>Easy 30 days return & exchange available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Best Offers -->
+                    <div class="offers-section">
+                        <h3 class="section-title">BEST OFFERS</h3>
+                        <div class="offer-item">
+                            <div class="offer-badge">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                            </div>
+                            <div class="offer-content">
+                                <p class="offer-title">10% Instant Discount on ICICI Bank Credit and Debit Cards on a min spend of $1500. TCA</p>
+                            </div>
+                        </div>
+                        <div class="offer-item">
+                            <div class="offer-badge">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div class="offer-content">
+                                <p class="offer-title">Get up to $500 cashback on Paytm wallet. Min order value $1199. Use code: PAYTM500</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="details-section">
+                        <h3 class="section-title">PRODUCT DETAILS</h3>
+                        <div class="details-content">
+                            <p class="detail-item"><strong>Color:</strong> Light Blue</p>
+                            <p class="detail-item"><strong>Fabric:</strong> 100% Cotton Denim</p>
+                            <p class="detail-item"><strong>Pattern:</strong> Solid</p>
+                            <p class="detail-item"><strong>Fit:</strong> Regular Fit</p>
+                            <p class="detail-item"><strong>Sleeve:</strong> Full Sleeve</p>
+                            <p class="detail-item"><strong>Collar:</strong> Spread Collar</p>
+                            <p class="detail-item"><strong>Care:</strong> Machine Wash</p>
+                        </div>
+                    </div>
+
+                    <!-- Size & Fit -->
+                    <div class="details-section">
+                        <h3 class="section-title">SIZE & FIT</h3>
+                        <div class="details-content">
+                            <p class="detail-item">The model (height 6') is wearing size M</p>
+                            <p class="detail-item">Regular Fit - fits just right, not too tight, not too loose</p>
+                        </div>
+                    </div>
+
+                    <!-- Material & Care -->
+                    <div class="details-section">
+                        <h3 class="section-title">MATERIAL & CARE</h3>
+                        <div class="details-content">
+                            <p class="detail-item">100% Cotton</p>
+                            <p class="detail-item">Machine Wash</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="reviews-section">
+                <div class="reviews-header">
+                    <h2>RATINGS & REVIEWS</h2>
+                    <button class="btn btn-outline">RATE PRODUCT</button>
+                </div>
+
+                <div class="reviews-summary">
+                    <div class="rating-overview">
+                        <div class="rating-number-large">4.2</div>
+                        <div class="stars-large">★★★★☆</div>
+                        <p class="total-ratings">2 Verified Buyers</p>
+                    </div>
+                    <div class="rating-bars">
+                        <div class="rating-bar-item">
+                            <span class="star-label">5★</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 50%;"></div>
+                            </div>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span class="star-label">4★</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="count">0</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span class="star-label">3★</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 50%;"></div>
+                            </div>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span class="star-label">2★</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="count">0</span>
+                        </div>
+                        <div class="rating-bar-item">
+                            <span class="star-label">1★</span>
+                            <div class="bar">
+                                <div class="bar-fill" style="width: 0%;"></div>
+                            </div>
+                            <span class="count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reviews-list">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="rating-stars">★★★★★</div>
+                            <span class="verified-badge">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                                </svg>
+                                Verified Buyer
+                            </span>
+                        </div>
+                        <p class="review-text">Great quality shirt! The fabric feels premium and the fit is perfect. Highly recommend!</p>
+                        <div class="review-footer">
+                            <span class="reviewer-name">John D.</span>
+                            <span class="review-date">January 15, 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="rating-stars">★★★☆☆</div>
+                            <span class="verified-badge">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                                </svg>
+                                Verified Buyer
+                            </span>
+                        </div>
+                        <p class="review-text">Good shirt but the color is slightly different from the pictures. Still a decent buy for the price.</p>
+                        <div class="review-footer">
+                            <span class="reviewer-name">Michael R.</span>
+                            <span class="review-date">January 10, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="index.html" style="text-decoration: none;"><h3> KOYA</h3></a>
+                    <p>Premium fashion for modern lifestyle. Quality meets style.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">FB</a>
+                        <a href="#" aria-label="Instagram">IG</a>
+                        <a href="#" aria-label="Twitter">TW</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KOYA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="brandbuy.js"></script>
+</body>
+</html>
